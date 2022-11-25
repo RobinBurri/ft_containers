@@ -1,14 +1,14 @@
-#ifndef FT__VERCTOR_HPP
-#define FT__VERCTOR_HPP
+#ifndef FT__VECTOR_HPP
+#define FT__VECTOR_HPP
 
 #include <iostream>
 #include <memory>
 
-// #include "algorithm.hpp"
-// #include "iterator.hpp"
-// #include "random_access_iterator.hpp"
-// #include "type_traits.hpp"
-// #include "util.hpp"
+#include "compare.hpp"
+#include "iterator.hpp"
+#include "random_access_iterator.hpp"
+#include "type_traits.hpp"
+#include "util.hpp"
 
 namespace ft
 {
@@ -106,9 +106,9 @@ namespace ft
 
         const_reverse_iterator rbegin() const { return (this->end); };
 
-        iterator end() { return (this->end); }
+        iterator end() { return (this->end); };
 
-        const_iterator end() const { return (this->end); }
+        const_iterator end() const { return (this->end); };
 
         reverse_iterator rend() { return reverse_iterator(this->start); };
 

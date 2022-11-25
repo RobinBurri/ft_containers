@@ -25,6 +25,7 @@ BIN				= bin
 $(shell mkdir -p $(BIN))
 
 SOURCES			=  $(SRC)/main.cpp\
+					$(SRC)/vectors_tests.cpp
 
 
 OBJS			= $(patsubst %,$(BIN)/%,$(notdir $(SOURCES:.cpp=.o)))
