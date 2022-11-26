@@ -17,8 +17,8 @@ int testVectors(int);
 int main()
 {
     int retVal = 0;
-    int testSize = 100;
-    retVal = testVector(testSize);
+    int testSize = 10000;
+    retVal = testVectors(testSize);
     if (retVal != 0)
     {
         return retVal;

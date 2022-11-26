@@ -62,9 +62,56 @@ int testValues(std::vector<int> &original, std::vector<int> &copy)
               << RESET << std::endl;
     return 0;
 }
+int testAccess(std::vector<int> &original, std::vector<int> &copy)
+{
+    int s = original.size();
+    // AT access specified element with bounds checking
+    if (original.at(s - 1) != copy.at(s - 1))
+    {
+        std::cout << RED << "at() Fail!\n"
+                  << RESET << std::endl;
+        return 1;
+    }
+    // OPERATOR []  access specified element
+    if (original[s - 1] != copy[s - 1])
+    {
+        std::cout << RED << "OPERATOR [] Fail\n"
+                  << RESET << std::endl;
+        return 1;
+    }
+    // BACK access the last element
+    if (original.back() != copy.back())
+    {
+        std::cout << RED << "back() Fail\n"
+                  << RESET << std::endl;
+        return 1;
+    }
+    // FRONT access the first element
+    if (original.front() != copy.front())
+    {
+        std::cout << RED << "front() Fail\n"
+                  << RESET << std::endl;
+        return 1;
+    }
+    // DATA direct access to the underlying array
+    if (copy.data() != &copy[0])
+    {
+        std::cout << RED << "data()  Fail\n"
+                  << RESET << std::endl;
+        return 1;
+    }
+    std::cout << GREEN << "at(): ok\n"
+              << "OPERATOR []: ok\n"
+              << "back(): ok\n"
+              << "front(): ok\n"
+              << "data(): ok\n"
+              << RESET << std::endl;
+    return 0;
+}
 
 int IntVectorTestOutput(std::vector<int> &original, std::vector<int> &copy, int testSize)
 {
+    // GET_ALLOCATOR return the associated allocator
 
     // PUSH_BACK adds an element at the end !
     std::cout << "test push_back(): " << std::endl;
@@ -75,6 +122,17 @@ int IntVectorTestOutput(std::vector<int> &original, std::vector<int> &copy, int 
         copy.push_back(tmp);
     }
     if (testValues(original, copy))
+    {
+        return 1;
+    }
+
+    // AT access specified element with bounds checking
+    // OPERATOR []  access specified element
+    // FRONT access the first element
+    // BACK access the last element
+    // DATA direct access to the underlying array
+    std::cout << "test element access: " << std::endl;
+    if (testAccess(original, copy))
     {
         return 1;
     }
@@ -114,9 +172,12 @@ int IntVectorTestOutput(std::vector<int> &original, std::vector<int> &copy, int 
     }
 
     // SWAP swap the content
-    std::cout << "test swap(): " << std::endl;
-    std::vector<int> foo1(testSize, 123);
-    std::vector<int> foo2(testSize, 123);
+    // OPERATOR= assigns values to the container
+    // ASSIGN assigns values to the container
+    std::cout << "test swap() & OPERATOR= & assign():" << std::endl;
+    std::vector<int> foo1;
+    foo1.assign(testSize, 123);
+    std::vector<int> foo2 = foo1;
 
     original.swap(foo1);
     copy.swap(foo2);
@@ -234,19 +295,6 @@ int IntVectorTestOutput(std::vector<int> &original, std::vector<int> &copy, int 
     {
         return 1;
     }
-
-    /**
-     Element access
-    */
-    // AT access specified element with bounds checking
-    // OPERATOR []  access specified element
-    // FRONT access the first element
-    // BACK access the last element
-    // DATA direct access to the underlying array
-
-    // OPERATOR= assigns values to the container
-    // ASSIGN assigns values to the container
-    // GET_ALLOCATOR return the associated allocator
 
     return 0;
 }
@@ -391,78 +439,78 @@ int testIntVectors(int testSize)
     return result;
 }
 
-int testStringVectors(int testSize)
+// int testStringVectors(int testSize)
+// {
+//     int result = 0;
+//     std::vector<string> original;
+//     std::vector<string> copy;
+
+//     std::cout << MAGENTA << "INT VECTORS TESTS STARTS:\n"
+//               << RESET << std::endl;
+//     std::cout << CYAN << "VECTORS OUTPUT: \n"
+//               << RESET << std::endl;
+
+//     result = IntVectorTestOutput(original, copy, testSize);
+
+//     if (result != 0)
+//     {
+//         std::cout << RED << "VECTORS OUTPUT TEST FAIL!" << RESET << std::endl;
+//         return result;
+//     }
+//     std::cout << CYAN << "VECTORS SPEED: \n"
+//               << RESET << std::endl;
+
+//     result = IntSpeedTest(original, copy, testSize);
+
+//     if (result)
+//     {
+//         std::cout << RED << "VECTORS SPEED TEST FAIL!" << RESET << std::endl;
+//         return result;
+//     }
+
+//     std::cout << GREEN << "VECTORS TESTS SUCCESS!!!" << RESET << std::endl;
+
+//     return result;
+// }
+
+// int testClassVectors(int testSize)
+// {
+//     int result = 0;
+//     std::vector<int> original;
+//     std::vector<int> copy;
+//
+//     std::cout << MAGENTA << "INT VECTORS TESTS STARTS:\n"
+//               << RESET << std::endl;
+//     std::cout << CYAN << "VECTORS OUTPUT: \n"
+//               << RESET << std::endl;
+
+//     result = IntVectorTestOutput(original, copy, testSize);
+
+//     if (result != 0)
+//     {
+//         std::cout << RED << "VECTORS OUTPUT TEST FAIL!" << RESET << std::endl;
+//         return result;
+//     }
+//     std::cout << CYAN << "VECTORS SPEED: \n"
+//               << RESET << std::endl;
+
+//     result = IntSpeedTest(original, copy, testSize);
+
+//     if (result)
+//     {
+//         std::cout << RED << "VECTORS SPEED TEST FAIL!" << RESET << std::endl;
+//         return result;
+//     }
+
+//     std::cout << GREEN << "VECTORS TESTS SUCCESS!!!" << RESET << std::endl;
+
+//     return result;
+// }
+
+int testVectors(int testSize)
 {
-    int result = 0;
-    std::vector<string> original;
-    std::vector<string> copy;
-
-    std::cout << MAGENTA << "INT VECTORS TESTS STARTS:\n"
-              << RESET << std::endl;
-    std::cout << CYAN << "VECTORS OUTPUT: \n"
-              << RESET << std::endl;
-
-    result = IntVectorTestOutput(original, copy, testSize);
-
-    if (result != 0)
-    {
-        std::cout << RED << "VECTORS OUTPUT TEST FAIL!" << RESET << std::endl;
-        return result;
-    }
-    std::cout << CYAN << "VECTORS SPEED: \n"
-              << RESET << std::endl;
-
-    result = IntSpeedTest(original, copy, testSize);
-
-    if (result)
-    {
-        std::cout << RED << "VECTORS SPEED TEST FAIL!" << RESET << std::endl;
-        return result;
-    }
-
-    std::cout << GREEN << "VECTORS TESTS SUCCESS!!!" << RESET << std::endl;
-
-    return result;
-}
-
-int testClassVectors(int testSize)
-{
-    int result = 0;
-    std::vector<int> original;
-    std::vector<int> copy;
-
-    std::cout << MAGENTA << "INT VECTORS TESTS STARTS:\n"
-              << RESET << std::endl;
-    std::cout << CYAN << "VECTORS OUTPUT: \n"
-              << RESET << std::endl;
-
-    result = IntVectorTestOutput(original, copy, testSize);
-
-    if (result != 0)
-    {
-        std::cout << RED << "VECTORS OUTPUT TEST FAIL!" << RESET << std::endl;
-        return result;
-    }
-    std::cout << CYAN << "VECTORS SPEED: \n"
-              << RESET << std::endl;
-
-    result = IntSpeedTest(original, copy, testSize);
-
-    if (result)
-    {
-        std::cout << RED << "VECTORS SPEED TEST FAIL!" << RESET << std::endl;
-        return result;
-    }
-
-    std::cout << GREEN << "VECTORS TESTS SUCCESS!!!" << RESET << std::endl;
-
-    return result;
-}
-
- 
-int testVector(int testSize)
-{
-    testIntVectors();
-    testStringVectors();
-    testClassVectors();
+    testIntVectors(testSize);
+    // testStringVectors();
+    // testClassVectors();
+    return 0;
 }
