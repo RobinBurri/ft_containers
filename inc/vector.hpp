@@ -91,85 +91,157 @@ namespace ft
         // reference front();
 
         // const_reference front() const;
-        
+
         /**
          * ? back
          */
+        // reference back();
+
+        // const_reference back() const;
+
         /**
          * ? data
          */
+
+        // T* data();
+
+        // const T *data() const;
+
         /**
          * ? begin
          */
+
+        // iterator begin();
+
+        // const_iterator begin() const;
+
+
         /**
          * ? end
          */
+        // iterator end();
+
+        // const_iterator end() const;
+
         /**
          * ? rbegin
          */
+        // reverse_iterator rbegin();
+
+        // const_reverse_iterator rbegin() const;
+
         /**
          * ? rend
          */
+        // reverse_iterator rend();
+
+        // const_reverse_iterator rend() const;
+
         /**
          * ? empty
          */
+        // bool empty() const;
+
         /**
          * ? size
          */
+        // size_type size() const;
+
         /**
          * ? max_size
          */
+        // size_type max_size() const;
         /**
          * ? reserve
          */
+        // void reserve( size_type new_cap );
+
         /**
          * ? capacity
          */
+        // size_type capacity() const;
+
         /**
          * ? clear
          */
+        // void clear();
+
         /**
          * ? insert
          */
+        // iterator insert(const_iterator pos, const T &value);
+
+        // iterator insert(const_iterator pos, size_type count, const T &value);
+
+        // template< class InputIt >
+        // iterator insert(const_iterator pos, InputIt first, InputIt last);
+
+
         /**
          * ? erase
          */
+        // iterator erase(iterator pos);
+
+        // iterator erase( iterator first, iterator last );
+
         /**
          * ? push_back
          */
+        // void push_back( const T& value );
+
+        // 
         /**
          * ? pop_back
          */
+        // void pop_back();
+
         /**
          * ? resize
          */
+        // void resize( size_type count, T value = T() );
+        
         /**
          * ? swap
          */
+        // void swap(vector &other);
 
         // NON-MEMBER FUNCITONS
         
         /**
          * ? operator==
          */
+        // bool operator==( const std::vector<T,Alloc>& lhs,
+                //  const std::vector<T,Alloc>& rhs );
         /**
          * ? operator!=
          */
+        // bool operator!=( const std::vector<T,Alloc>& lhs,
+                //  const std::vector<T,Alloc>& rhs );
+
         /**
          * ? operator<
          */
+        // bool operator<(const std::vector<T, Alloc> &lhs,
+                    //    const std::vector<T, Alloc> &rhs);
+
         /**
          * ? operator<=
          */
+        // bool operator<=( const std::vector<T,Alloc>& lhs,
+                //  const std::vector<T,Alloc>& rhs );
+
         /**
          * ? operator>
          */
+        // bool operator>( const std::vector<T,Alloc>& lhs,
+                // const std::vector<T,Alloc>& rhs );
+
         /**
          * ? operator>=
          */
-     
-        
-    }
+        // bool operator>=(const std::vector<T, Alloc> &lhs,
+                        // const std::vector<T, Alloc> &rhs);
+        }
 
 };
 
