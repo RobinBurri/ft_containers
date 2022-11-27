@@ -299,7 +299,8 @@ int IntVectorTestOutput(std::vector<int> &original, std::vector<int> &copy, int 
     return 0;
 }
 
-int IntVectorspeedTest(std::vector<int> &toTest, int testSize)
+template <class T>
+int speedTest(std::vector<T> &toTest, int testSize)
 {
 
     for (int i = 0; i < testSize; i++)
@@ -309,7 +310,7 @@ int IntVectorspeedTest(std::vector<int> &toTest, int testSize)
     }
 
     // ERASE erase element
-    std::vector<int>::iterator oit = toTest.begin();
+    typename std::vector<T>::iterator oit = toTest.begin();
     toTest.erase(oit, (oit + 5));
 
     // INSERT insert element
@@ -323,7 +324,7 @@ int IntVectorspeedTest(std::vector<int> &toTest, int testSize)
     }
 
     // SWAP swap the content
-    std::vector<int> foo1(testSize, 123);
+    std::vector<T> foo1(testSize, 123);
     toTest.swap(foo1);
 
     // RESIZE change the number of element stored
@@ -352,8 +353,8 @@ int IntVectorspeedTest(std::vector<int> &toTest, int testSize)
     // END return an iterator to the end
     // RBEGIN return a reverse iterator to the beginning
     // REND return a reverse iterator to the end.
-    std::vector<int>::iterator it_bo = toTest.begin();
-    std::vector<int>::iterator it_eo = toTest.end();
+    typename std::vector<T>::iterator it_bo = toTest.begin();
+    typename std::vector<T>::iterator it_eo = toTest.end();
 
     while (it_bo != it_eo)
     {
@@ -375,14 +376,15 @@ int IntVectorspeedTest(std::vector<int> &toTest, int testSize)
     return 0;
 }
 
-int IntSpeedTest(std::vector<int> &original, std::vector<int> &copy, int testSize)
+template <class T>
+int speedTestHandler(std::vector<T> &original, std::vector<T> &copy, int testSize)
 {
     struct timeval obegin, oend, cbegin, cend;
     gettimeofday(&obegin, 0);
-    IntVectorspeedTest(original, testSize);
+    speedTest(original, testSize);
     gettimeofday(&oend, 0);
     gettimeofday(&cbegin, 0);
-    IntVectorspeedTest(copy, testSize);
+    speedTest(copy, testSize);
     gettimeofday(&cend, 0);
     long seconds = oend.tv_sec - obegin.tv_sec;
     long microseconds = oend.tv_usec - obegin.tv_usec;
@@ -413,65 +415,65 @@ int testIntVectors(int testSize)
 
     std::cout << MAGENTA << "INT VECTORS TESTS STARTS:\n"
               << RESET << std::endl;
-    std::cout << CYAN << "VECTORS OUTPUT: \n"
+    std::cout << CYAN << "INT VECTORS OUTPUT: \n"
               << RESET << std::endl;
 
     result = IntVectorTestOutput(original, copy, testSize);
 
     if (result != 0)
     {
-        std::cout << RED << "VECTORS OUTPUT TEST FAIL!" << RESET << std::endl;
+        std::cout << RED << "INT VECTORS OUTPUT TEST FAIL!" << RESET << std::endl;
         return result;
     }
-    std::cout << CYAN << "VECTORS SPEED: \n"
+    std::cout << CYAN << "INT VECTORS SPEED: \n"
+              << RESET << std::endl;
+
+    result = speedTestHandler(original, copy, testSize);
+
+    if (result)
+    {
+        std::cout << RED << "INT VECTORS SPEED TEST FAIL!" << RESET << std::endl;
+        return result;
+    }
+
+    std::cout << GREEN << "INT VECTORS TESTS SUCCESS!!!" << RESET << std::endl;
+
+    return result;
+}
+
+int testStringVectors(int testSize)
+{
+    int result = 0;
+    std::vector<std::string> original;
+    std::vector<std::string> copy;
+
+    std::cout << MAGENTA << "STRING VECTORS TESTS STARTS:\n"
+              << RESET << std::endl;
+    std::cout << CYAN << "STRING VECTORS OUTPUT: \n"
+              << RESET << std::endl;
+
+    result = IntVectorTestOutput(original, copy, testSize);
+
+    if (result != 0)
+    {
+        std::cout << RED << "STRING VECTORS OUTPUT TEST FAIL!" << RESET << std::endl;
+        return result;
+    }
+    std::cout << CYAN << "STRING VECTORS SPEED: \n"
               << RESET << std::endl;
 
     result = IntSpeedTest(original, copy, testSize);
 
     if (result)
     {
-        std::cout << RED << "VECTORS SPEED TEST FAIL!" << RESET << std::endl;
+        std::cout << RED << "STRING VECTORS SPEED TEST FAIL!" << RESET << std::endl;
         return result;
     }
 
-    std::cout << GREEN << "VECTORS TESTS SUCCESS!!!" << RESET << std::endl;
+    std::cout << GREEN << "STRING VECTORS TESTS SUCCESS!!!" << RESET << std::endl;
 
     return result;
 }
-
-// int testStringVectors(int testSize)
-// {
-//     int result = 0;
-//     std::vector<string> original;
-//     std::vector<string> copy;
-
-//     std::cout << MAGENTA << "INT VECTORS TESTS STARTS:\n"
-//               << RESET << std::endl;
-//     std::cout << CYAN << "VECTORS OUTPUT: \n"
-//               << RESET << std::endl;
-
-//     result = IntVectorTestOutput(original, copy, testSize);
-
-//     if (result != 0)
-//     {
-//         std::cout << RED << "VECTORS OUTPUT TEST FAIL!" << RESET << std::endl;
-//         return result;
-//     }
-//     std::cout << CYAN << "VECTORS SPEED: \n"
-//               << RESET << std::endl;
-
-//     result = IntSpeedTest(original, copy, testSize);
-
-//     if (result)
-//     {
-//         std::cout << RED << "VECTORS SPEED TEST FAIL!" << RESET << std::endl;
-//         return result;
-//     }
-
-//     std::cout << GREEN << "VECTORS TESTS SUCCESS!!!" << RESET << std::endl;
-
-//     return result;
-// }
 
 // int testClassVectors(int testSize)
 // {
