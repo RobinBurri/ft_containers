@@ -12,18 +12,6 @@
  *
  */
 
-// /*
-// ** @brief Constructor from pointer:
-// ** Construct a random access iterator and point to the
-// ** element passed in argument.
-// **
-// ** @param elem the pointer to the element to iterate.
-// */
-// random_access_iterator(pointer elem)
-//     : _elem(elem)
-// {
-// }
-
 namespace ft
 {
     template <typename T>
@@ -58,13 +46,18 @@ namespace ft
             this->_elem = op._elem;
             return (*this);
         }
-        // Destructor
-        virtual ~random_access_iterator() {}
-
+        // Constructor from pointer
+        random_access_iterator(pointer elem)
+            : _elem(elem)
+        {
+        }
+        // Constructor from pointer
         pointer base() const
         {
             return (this->_elem);
         }
+        // Destructor
+        virtual ~random_access_iterator() {}
         // OPERATORS:
         reference operator*(void) const { return (*_elem); }
 
@@ -186,7 +179,6 @@ namespace ft
         return (lhs.base() > rhs.base());
     }
 
-   
     template <typename T>
     typename ft::random_access_iterator<T>::difference_type
     operator<=(const ft::random_access_iterator<T> lhs,
