@@ -11,8 +11,12 @@
 /* ************************************************************************** */
 
 #include <sys/time.h>
+#include <ctime>
+#include <iostream>
+#include <unistd.h>
 
 int testVectors(int);
+
 
 int main()
 {
@@ -25,33 +29,6 @@ int main()
     }
 
     return retVal;
-
-    // struct timeval begin, end;
-    // gettimeofday(&begin, 0);
-
-    // srand(time(0));
-    // std::vector<int> original;
-    // std::vector<int> copy;
-
-    // for (int i = 0; i < 10; i++)
-    // {
-    //     int tmp = rand();
-    //     original.push_back(tmp);
-    //     copy.push_back(tmp);
-    // }
-
-    // for (int i = 0; i < 10; i++)
-    // {
-    //     std::cout << original[i] << std::endl;
-    //     std::cout << copy[i] << std::endl;
-    // }
-
-    // gettimeofday(&end, 0);
-
-    // long seconds = end.tv_sec - begin.tv_sec;
-    // long microsec = end.tv_usec - begin.tv_usec;
-    // double elapsed = seconds + microsec * 1e-6;
-    // std::cout << "Time: " << elapsed << std::endl;
     /*
      Modifiers
     */
