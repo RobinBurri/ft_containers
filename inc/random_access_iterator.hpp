@@ -1,7 +1,7 @@
 #ifndef RANDOM_ACCESS_ITERATOR_HPP
 #define RANDOM_ACCESS_ITERATOR_HPP
 
-#include "interator_traits.hpp"
+#include "iterator_traits.hpp"
 
 /**
  * Random-access iterators are iterators that can be used to access elements at an arbitrary offset position

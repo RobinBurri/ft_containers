@@ -67,8 +67,6 @@ int testValues(std::vector<int> &original, std::vector<int> &copy)
     }
     for (int i = 0; i < s; i++)
     {
-        // std::cout << original[i] << std::endl;
-        // std::cout << copy[i] << std::endl;
         if (original[i] != copy[i])
         {
             std::cout << RED << "Values are not equal!!!\n"

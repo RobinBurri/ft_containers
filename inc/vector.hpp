@@ -33,7 +33,6 @@ namespace ft
                 https://en.cppreference.com/w/cpp/container/vector/vector
                  */
                 // CONSTRUCTORS:
-                // vector();
                 explicit vector(const allocator_type &alloc = allocator_type())
                     : _alloc(alloc),
                       _start(u_nullptr),
@@ -42,9 +41,6 @@ namespace ft
                 {
                 }
 
-                // explicit vector(size_type count,
-                //                 const T &value = T(),
-                //                 const Allocator &alloc = Allocator());
                 explicit vector(size_type n, const value_type &val = value_type(),
                                 const allocator_type &alloc = allocator_type())
                     : _alloc(alloc),
@@ -62,9 +58,6 @@ namespace ft
                         }
                 }
 
-                // template <class InputIt>
-                // vector(InputIt first, InputIt last,
-                //        const Allocator &alloc = Allocator());
                 template <class InputIterator>
                 vector(InputIterator first, InputIterator last,
                        const allocator_type &alloc = allocator_type(),
@@ -86,7 +79,6 @@ namespace ft
                         }
                 }
 
-                // vector(const vector &other);
                 vector(const vector &x)
                     : _alloc(x._alloc),
                       _start(u_nullptr),
@@ -99,7 +91,6 @@ namespace ft
                 /**
                  * ? destructor
                  */
-                // ~vector();
                 ~vector()
                 {
                         this->clear();
@@ -109,7 +100,6 @@ namespace ft
                 /**
                  * ? operator=
                  */
-                // vector &operator=(const vector &other);
                 vector &operator=(const vector &x)
                 {
                         if (x == *this)
@@ -122,9 +112,6 @@ namespace ft
                 /**
                  * ? assign
                  */
-                // std::vector<T, Allocator>::assign
-                // template <class InputIt>
-                // void assign(InputIt first, InputIt last);
                 template <class InputIterator>
                 void assign(InputIterator first, InputIterator last,
                             typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type * = u_nullptr)
@@ -194,14 +181,12 @@ namespace ft
                 /**
                  * ? at
                  */
-                // reference at(size_type pos);
                 reference at(size_type n)
                 {
                         checkRange(n);
                         return ((*this)[n]);
                 }
 
-                // const_reference at( size_type pos ) const;
                 const_reference at(size_type n) const
                 {
                         checkRange(n);
@@ -210,29 +195,22 @@ namespace ft
                 /**
                  * ? operator []
                  */
-
-                // reference operator[]( size_type pos );
                 reference operator[](size_type n) { return (*(_start + n)); }
 
-                // const_reference operator[]( size_type pos ) const;
                 const_reference operator[](size_type n) const { return (*(_start + n)); }
 
                 /**
                  * ? front
                  */
-                // reference front();
                 reference front() { return (*_start); }
 
-                // const_reference front() const;
                 const_reference front() const { return (*_start); }
 
                 /**
                  * ? back
                  */
-                // reference back();
                 reference back() { return (*(_end - 1)); }
 
-                // const_reference back() const;
                 const_reference back() const { return (*(_end - 1)); }
 
                 /**
@@ -247,16 +225,13 @@ namespace ft
                  * ? begin
                  */
 
-                // iterator begin();
                 iterator begin() { return (_start); };
 
-                // const_iterator begin() const;
                 const_iterator begin() const { return (_start); }
 
                 /**
                  * ? end
                  */
-                // iterator end();
                 iterator end()
                 {
                         if (this->empty())
@@ -264,7 +239,6 @@ namespace ft
                         return (_end);
                 }
 
-                // const_iterator end() const;
                 const_iterator end() const
                 {
                         if (this->empty())
@@ -275,43 +249,35 @@ namespace ft
                 /**
                  * ? rbegin
                  */
-                // reverse_iterator rbegin();
                 reverse_iterator rbegin() { return (reverse_iterator(this->end())); }
 
-                // const_reverse_iterator rbegin() const;
                 const_reverse_iterator rbegin() const { return (reverse_iterator(this->end())); }
 
                 /**
                  * ? rend
                  */
-                // reverse_iterator rend();
                 reverse_iterator rend() { return (reverse_iterator(this->begin())); }
 
-                // const_reverse_iterator rend() const;
                 const_reverse_iterator rend() const { return (reverse_iterator(this->begin())); }
 
                 /**
                  * ? empty
                  */
-                // bool empty() const;
                 bool empty(void) const { return (size() == 0 ? true : false); }
 
                 /**
                  * ? size
                  */
-                // size_type size() const;
                 size_type size(void) const { return (this->_end - this->_start); }
 
                 /**
                  * ? max_size
                  */
-                // size_type max_size() const;
                 size_type max_size(void) const { return allocator_type().max_size(); }
 
                 /**
                  * ? reserve
                  */
-                // void reserve( size_type new_cap );
                 void reserve(size_type n)
                 {
                         if (n > this->max_size())
@@ -339,13 +305,11 @@ namespace ft
                 /**
                  * ? capacity
                  */
-                // size_type capacity() const;
                 size_type capacity(void) const { return (this->_end_capacity - this->_start); }
 
                 /**
                  * ? clear
                  */
-                // void clear();
                 void clear()
                 {
                         size_type save_size = this->size();
@@ -359,7 +323,6 @@ namespace ft
                 /**
                  * ? insert
                  */
-                // iterator insert(const_iterator pos, const T &value);
                 iterator insert(iterator position, const value_type &val)
                 {
                         size_type pos_len = &(*position) - _start;
@@ -399,7 +362,6 @@ namespace ft
                         return (iterator(_start + pos_len));
                 }
 
-                // iterator insert(const_iterator pos, size_type count, const T &value);
                 void insert(iterator position, size_type n, const value_type &val)
                 {
                         if (n == 0)
@@ -457,8 +419,6 @@ namespace ft
                         }
                 }
 
-                // template< class InputIt >
-                // iterator insert(const_iterator pos, InputIt first, InputIt last);
                 template <class InputIterator>
                 void insert(iterator position, InputIterator first, InputIterator last,
                             typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type * = u_nullptr)
@@ -511,10 +471,10 @@ namespace ft
                                 _end_capacity = new_end_capacity;
                         }
                 }
+
                 /**
                  * ? erase
                  */
-                // iterator erase(iterator pos);
                 iterator erase(iterator position)
                 {
                         pointer p_pos = &(*position);
@@ -532,7 +492,7 @@ namespace ft
                         _end -= 1;
                         return (iterator(p_pos));
                 }
-                // iterator erase( iterator first, iterator last );
+
                 iterator erase(iterator first, iterator last)
                 {
                         pointer p_first = &(*first);
@@ -550,7 +510,6 @@ namespace ft
                 /**
                  * ? push_back
                  */
-                // void push_back( const T& value );
                 void push_back(const value_type &val)
                 {
                         if (_end == _end_capacity)
@@ -565,7 +524,6 @@ namespace ft
                 /**
                  * ? pop_back
                  */
-                // void pop_back();
                 void pop_back()
                 {
                         _alloc.destroy(&this->back());
@@ -575,7 +533,6 @@ namespace ft
                 /**
                  * ? resize
                  */
-                // void resize( size_type count, T value = T() );
                 void resize(size_type n, value_type val = value_type())
                 {
                         if (n > this->max_size())
@@ -595,7 +552,6 @@ namespace ft
                 /**
                  * ? swap
                  */
-                // void swap(vector &other);
                 void swap(vector &x)
                 {
                         if (x == *this)
@@ -623,26 +579,18 @@ namespace ft
                 pointer _end;
                 pointer _end_capacity;
 
-                /*
-                ** @brief Check if "n" is in the range of the container.
-                ** If "n" is out of range that's throw an std::out_of_range
-                ** exception.
-                **
-                ** @param n The position of the element to check.
-                */
                 void checkRange(const size_type &n) const
                 {
                         if (n >= this->size())
                                 throw(std::out_of_range("vector::checkRange: n (which is " + ft::to_string(n) + ") >= this->size() (which is " + ft::to_string(this->size()) + ")"));
                 }
-        }
+        };
+        
         // NON-MEMBER FUNCITONS
 
         /**
          * ? operator==
          */
-        // bool operator==( const std::vector<T,Alloc>& lhs,
-        //  const std::vector<T,Alloc>& rhs );
         template <class T, class Alloc>
         bool operator==(const ft::vector<T, Alloc> &lhs, const ft::vector<T, Alloc> &rhs)
         {
@@ -662,8 +610,6 @@ namespace ft
         /**
          * ? operator!=
          */
-        // bool operator!=( const std::vector<T,Alloc>& lhs,
-        //  const std::vector<T,Alloc>& rhs );
         template <class T, class Alloc>
         bool operator!=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
         {
@@ -673,8 +619,6 @@ namespace ft
         /**
          * ? operator<
          */
-        // bool operator<(const std::vector<T, Alloc> &lhs,
-        //    const std::vector<T, Alloc> &rhs);
         template <class T, class Alloc>
         bool operator<(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
         {
@@ -684,8 +628,6 @@ namespace ft
         /**
          * ? operator<=
          */
-        // bool operator<=( const std::vector<T,Alloc>& lhs,
-        //  const std::vector<T,Alloc>& rhs );
         template <class T, class Alloc>
         bool operator<=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
         {
@@ -695,8 +637,6 @@ namespace ft
         /**
          * ? operator>
          */
-        // bool operator>( const std::vector<T,Alloc>& lhs,
-        // const std::vector<T,Alloc>& rhs );
         template <class T, class Alloc>
         bool operator>(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
         {
@@ -706,19 +646,12 @@ namespace ft
         /**
          * ? operator>=
          */
-        // bool operator>=(const std::vector<T, Alloc> &lhs,
-        // const std::vector<T, Alloc> &rhs);
         template <class T, class Alloc>
         bool operator>=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
         {
                 return (!(lhs < rhs));
         }
-        /*
-         ** @brief Overload of swap (vector).
-         ** The contents of container are swaped.
-         **
-         ** @param x, y the containers to swap.
-         */
+   
         template <class T, class Alloc>
         void swap(vector<T, Alloc> &x, vector<T, Alloc> &y)
         {

@@ -16,6 +16,9 @@
 #include <unistd.h>
 
 int testVectors(int);
+/**
+ * TODO change u_nullptr to nullptr if possible
+*/
 
 
 int main()

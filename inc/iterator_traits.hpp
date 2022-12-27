@@ -1,5 +1,5 @@
-#ifndef FT_TYPE_TRAITS_HPP
-#define FT_TYPE_TRAITS_HPP
+#ifndef FT_ITERATOR_TRAITS_HPP
+#define FT_ITERATOR_TRAITS_HPP
 
 namespace ft
 {
